@@ -146,12 +146,22 @@ void Ex06opengl::paintGL()
       // Create normal Matrix
       QMatrix3x3 nrm = mv.normalMatrix();
 
+      // Hardcoded light info
+      float La = 0.3;
+      float Ld = 1.0;
+      float Ls = 1.0;
+
       // Enable shader
       shader[mode]->bind();
       //  Set Modelview and Projection Matrix
       shader[mode]->setUniformValue("ProjectionMatrix",proj);
       shader[mode]->setUniformValue("ModelViewMatrix",mv);
       shader[mode]->setUniformValue("NormalMatrix",nrm);
+      shader[mode]->setUniformValue("LightPos",QVector4D(lpos.x(),lpos.y(),lpos.z(),1.0));
+      // Pass in light variables
+      shader[mode]->setUniformValue("LightAmbient",La);
+      shader[mode]->setUniformValue("LightDiffuse",Ld);
+      shader[mode]->setUniformValue("LightSpecular",Ls);
       //  Select cube buffer
       cube_buffer.bind();
       //   Attribute 0: vertex coordinate (vec4) at offset 0
@@ -160,9 +170,12 @@ void Ex06opengl::paintGL()
       //   Attribute 1:  vertex color (vec3) offset 7 floats
       shader[mode]->enableAttributeArray(1);
       shader[mode]->setAttributeBuffer(1,GL_FLOAT,7*sizeof(float),3,12*sizeof(float));
-      //   Attribute 2:  vertex color (vec3) offset 4 floats
+      //   Attribute 2:  normal of vertex
       shader[mode]->enableAttributeArray(2);
       shader[mode]->setAttributeBuffer(2,GL_FLOAT,4*sizeof(float),3,12*sizeof(float));
+      //   Attribute 3:  texture coordinates
+      shader[mode]->enableAttributeArray(3);
+      shader[mode]->setAttributeBuffer(3,GL_FLOAT,10*sizeof(float),2,12*sizeof(float));
 
       // Draw the cube
       glDrawArrays(GL_TRIANGLES,0,cube_size);
@@ -170,6 +183,8 @@ void Ex06opengl::paintGL()
       //  Disable vertex arrays
       shader[mode]->disableAttributeArray(0);
       shader[mode]->disableAttributeArray(1);
+      shader[mode]->disableAttributeArray(2);
+      shader[mode]->disableAttributeArray(3);
 
       //  Unbind this buffer
       cube_buffer.release();

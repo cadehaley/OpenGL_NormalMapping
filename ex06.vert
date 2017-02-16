@@ -9,9 +9,17 @@ uniform mat3 NormalMatrix;
 layout(location = 0) in vec4 Vertex;
 layout(location = 1) in vec3 Color;
 layout(location = 2) in vec3 Normal;
+layout(location = 3) in vec2 inTextureCoord;
+
+// Light information
+uniform vec4 LightPos;
+uniform float LightAmbient;
+uniform float LightDiffuse;
+uniform float LightSpecular;
 
 //  Output to next shader
 out vec3 FrontColor;
+out vec2 TextureCoord;
 
 
 vec3 phong()
@@ -20,33 +28,31 @@ vec3 phong()
    vec3 P = vec3(ModelViewMatrix * Vertex);
    //  N is the object normal at P
    vec3 N = normalize(NormalMatrix * Normal);
-   //  Light Position for light 0
-//   vec3 LightPos = vec3(gl_LightSource[0].position);
    //  L is the light vector
-//   vec3 L = normalize(LightPos - P);
+   vec3 L = normalize(vec3(ModelViewMatrix * LightPos) - P);
 
    //  Emission and ambient color
-//   vec4 color = gl_FrontMaterial.emission + gl_FrontLightProduct[0].ambient + gl_LightModel.ambient*gl_FrontMaterial.ambient;
-//////DEBUG//////
-  vec3 color = N;
+   vec3 color = vec3(LightAmbient);
+
 
    //  Diffuse light intensity is cosine of light and normal vectors
-//   float Id = dot(L,N);
-//   if (Id>0.0)
-//   {
+   float Id = dot(L,N);
+   if (Id>0.0)
+   {
       //  Add diffuse
-//      color += Id*gl_FrontLightProduct[0].diffuse;
+      color += Id*LightDiffuse;
       //  R is the reflected light vector R = 2(L.N)N - L
-//      vec3 R = reflect(-L, N);
+      vec3 R = reflect(-L, N);
       //  V is the view vector (eye at the origin)
-//      vec3 V = normalize(-P);
+      vec3 V = normalize(-P);
       //  Specular is cosine of reflected and view vectors
-//      float Is = dot(R,V);
-//      if (Is>0.0) color += pow(Is,gl_FrontMaterial.shininess)*gl_FrontLightProduct[0].specular;
-//   }
+      float Is = dot(R,V);
+      if (Is>0.0) color += pow(Is,32.0)*LightSpecular;
+   }
 
    //  Return sum of color components
    return color;
+//   return vec3(Vertex[0],Vertex[1],Vertex[2]);
 }
 
 
@@ -57,4 +63,6 @@ void main()
    FrontColor = phong();
    //  Set transformed vertex location
    gl_Position =  ProjectionMatrix * ModelViewMatrix * Vertex;
+
+   TextureCoord = inTextureCoord;
 }
