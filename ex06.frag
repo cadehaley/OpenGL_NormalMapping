@@ -8,12 +8,13 @@ in vec3 Normal;
 in vec2 TextureCoord;
 
 in mat4 ModelViewMatrix;
-in mat4 ProjectionMatrix;
-in mat3 NormalMatrix;
 
 //  Fragment color
 layout (location=0) out vec4 Fragcolor;
 uniform sampler2D texture;
+uniform sampler2D texture_nrm;
+in vec3 P;
+in vec3 N;
 
 // Light information
 uniform vec4 LightPos;
@@ -23,16 +24,11 @@ uniform float LightSpecular;
 
 vec3 phong()
 {
-   //  P is the vertex coordinate on body
-   vec3 P = vec3(ModelViewMatrix * Vertex);
-   //  N is the object normal at P
-   vec3 N = normalize(NormalMatrix * Normal);
+
    //  L is the light vector
    vec3 L = normalize(vec3(ModelViewMatrix * LightPos) - P);
-
    //  Emission and ambient color
    vec3 color = vec3(LightAmbient);
-
 
    //  Diffuse light intensity is cosine of light and normal vectors
    float Id = dot(L,N);
@@ -47,15 +43,38 @@ vec3 phong()
       //  Specular is cosine of reflected and view vectors
       float Is = dot(R,V);
       if (Is>0.0) color += pow(Is,32.0)*LightSpecular;
+
    }
 
    //  Return sum of color components
+      //return L;
    return color;
-//   return vec3(Vertex[0],Vertex[1],Vertex[2]);
 }
+
+//mat3 cotangent_frame( vec3 N, vec3 p, vec2 uv )
+//{
+//    // get edge vectors of the pixel triangle
+//    vec3 dp1 = dFdx( p );
+//    vec3 dp2 = dFdy( p );
+//    vec2 duv1 = dFdx( uv );
+//    vec2 duv2 = dFdy( uv );
+//
+//    // solve the linear system
+//    vec3 dp2perp = cross( dp2, N );
+//    vec3 dp1perp = cross( N, dp1 );
+//    vec3 T = dp2perp * duv1.x + dp1perp * duv2.x;
+//    vec3 B = dp2perp * duv1.y + dp1perp * duv2.y;
+//
+//    // construct a scale-invariant frame
+//    float invmax = inversesqrt( max( dot(T,T), dot(B,B) ) );
+//    return mat3( T * invmax, B * invmax, N );
+//}
 
 void main()
 {
-    //Fragcolor = vec4(FrontColor,1.0)*texture2D(texture,TextureCoord);
+    vec3 normal = texture2D(texture,TextureCoord).rgb;
+    normal = normalize(normal * 2.0 - 1.0);
+
+    //Fragcolor = vec4(phong(),1.0);
     Fragcolor = vec4(phong(),1.0)*texture2D(texture,TextureCoord);
 }

@@ -13,6 +13,7 @@ class Ex06opengl : public CUgl
 Q_OBJECT
 private:
    unsigned int tex;       //  Textures
+   unsigned int tex_nrm;
    QGLBuffer cube_buffer;  //  Vertex buffer
    QMatrix4x4       proj;  //  Projection matrix
 public:

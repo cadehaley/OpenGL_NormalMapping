@@ -68,8 +68,14 @@ const float cube_data[] =  // Vertex data
 void Ex06opengl::initializeGL()
 {
    // Texture
-   QPixmap crate(":/crate.png");
-   tex = bindTexture(crate,GL_TEXTURE_2D);
+   //QPixmap brickwall(":/brickwall.jpg");
+   //tex = bindTexture(brickwall,GL_TEXTURE_2D);
+
+   //QPixmap brickwall_normal(":/brickwall_normal.jpg");
+   //tex_nrm = bindTexture(brickwall_normal,GL_TEXTURE_2D);
+
+   tex = loadImage("brickwall.jpg");
+   tex_nrm = loadImage("brickwall_normal.jpg");
 
    //  Load shaders
    addShader(":/ex06.vert",":/ex06.frag");
@@ -151,17 +157,33 @@ void Ex06opengl::paintGL()
       float Ld = 1.0;
       float Ls = 1.0;
 
+
+
+
       // Enable shader
       shader[mode]->bind();
       //  Set Modelview and Projection Matrix
-      shader[mode]->setUniformValue("inProjectionMatrix",proj);
+      shader[mode]->setUniformValue("ProjectionMatrix",proj);
       shader[mode]->setUniformValue("inModelViewMatrix",mv);
-      shader[mode]->setUniformValue("inNormalMatrix",nrm);
+      shader[mode]->setUniformValue("NormalMatrix",nrm);
       shader[mode]->setUniformValue("LightPos",QVector4D(lpos.x(),lpos.y(),lpos.z(),1.0));
       // Pass in light variables
       shader[mode]->setUniformValue("LightAmbient",La);
       shader[mode]->setUniformValue("LightDiffuse",Ld);
       shader[mode]->setUniformValue("LightSpecular",Ls);
+
+      // Load textures
+      //glUniform1i(tex, 0);
+      glActiveTexture(GL_TEXTURE0);
+      glBindTexture(GL_TEXTURE_2D,tex);
+      shader[mode]->setUniformValue("texture"  ,0);
+
+      //glUniform1i(tex_nrm, 1);
+      glActiveTexture(GL_TEXTURE1);
+      glBindTexture(GL_TEXTURE_2D,tex_nrm);
+
+      shader[mode]->setUniformValue("texture_nrm"  ,1);
+
       //  Select cube buffer
       cube_buffer.bind();
       //   Attribute 0: vertex coordinate (vec4) at offset 0
