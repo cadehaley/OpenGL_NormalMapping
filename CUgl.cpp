@@ -14,7 +14,7 @@ CUgl::CUgl(QWidget* parent,bool fixed)
     : QGLWidget(parent)
 {
    //  Initial shader
-   mode  = 0;
+   mode  = 1;
    //  Fixed pipeline
    if (fixed) shader.push_back(NULL);
    //  Draw all objects
@@ -22,8 +22,8 @@ CUgl::CUgl(QWidget* parent,bool fixed)
    //  Projection
    mouse = false;
    asp = 1;
-   dim = 4;
-   fov = 0;
+   dim = 1.8;
+   fov = 55;
    th = ph = 0;
    //  Light settings
    La = 0.3;
@@ -59,7 +59,7 @@ void CUgl::tick()
 {
    if (move)
    {
-      zh = timer.interval() ? zh+0.2*timer.interval() : fmod(0.090*time.elapsed(),360);
+      zh = timer.interval() ? zh+0.1*timer.interval() : fmod(0.090*time.elapsed(),360);
       if (zh>360) zh -= 360;
       update();
    }
@@ -119,7 +119,7 @@ void CUgl::doScene()
    else
       for (int k=0;k<objects.length();k++)
          objects[k]->display();
-         
+
 }
 
 //

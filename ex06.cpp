@@ -1,6 +1,8 @@
 //
-//  Ex06:  OpenGL 4
-//  Willem A. (Vlakkies) Schreuder
+//  HW4:  OpenGL 4
+//  By Cade Haley
+//  Partner: Jose Canizares
+//  Adapted from code by Willem A. (Vlakkies) Schreuder
 //  CSCI 4239/5239 Spring 2017
 //
 

@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = ex061.0.0
-DISTDIR = /home/cade/Documents/CSCI4239/Ex6/.tmp/ex061.0.0
+DISTDIR = /home/cade/Documents/CSCI4239/HW4/.tmp/ex061.0.0
 LINK          = g++
 LFLAGS        = -m64 -Wl,-O1
 LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lQt5OpenGL -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
@@ -336,17 +336,20 @@ compiler_moc_header_clean:
 moc_ex06viewer.cpp: ex06opengl.h \
 		CUgl.h \
 		Object.h \
+		Type.h \
 		ex06viewer.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cade/Documents/CSCI4239/Ex6 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ex06viewer.h -o moc_ex06viewer.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cade/Documents/CSCI4239/HW4 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ex06viewer.h -o moc_ex06viewer.cpp
 
 moc_ex06opengl.cpp: CUgl.h \
 		Object.h \
+		Type.h \
 		ex06opengl.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cade/Documents/CSCI4239/Ex6 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ex06opengl.h -o moc_ex06opengl.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cade/Documents/CSCI4239/HW4 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ex06opengl.h -o moc_ex06opengl.cpp
 
 moc_CUgl.cpp: Object.h \
+		Type.h \
 		CUgl.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cade/Documents/CSCI4239/Ex6 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include CUgl.h -o moc_CUgl.cpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/home/cade/Documents/CSCI4239/HW4 -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include CUgl.h -o moc_CUgl.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -365,25 +368,30 @@ compiler_clean: compiler_rcc_clean compiler_moc_header_clean
 ex06.o: ex06.cpp ex06viewer.h \
 		ex06opengl.h \
 		CUgl.h \
-		Object.h
+		Object.h \
+		Type.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ex06.o ex06.cpp
 
 ex06viewer.o: ex06viewer.cpp ex06viewer.h \
 		ex06opengl.h \
 		CUgl.h \
-		Object.h
+		Object.h \
+		Type.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ex06viewer.o ex06viewer.cpp
 
 ex06opengl.o: ex06opengl.cpp ex06opengl.h \
 		CUgl.h \
-		Object.h
+		Object.h \
+		Type.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ex06opengl.o ex06opengl.cpp
 
 CUgl.o: CUgl.cpp CUgl.h \
-		Object.h
+		Object.h \
+		Type.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CUgl.o CUgl.cpp
 
-Object.o: Object.cpp Object.h
+Object.o: Object.cpp Object.h \
+		Type.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Object.o Object.cpp
 
 qrc_ex06.o: qrc_ex06.cpp 

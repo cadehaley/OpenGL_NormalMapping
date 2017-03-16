@@ -13,7 +13,7 @@
 Ex06viewer::Ex06viewer()
 {
    //  Set window title
-   setWindowTitle(tr("Ex06:  OpenGL 4"));
+   setWindowTitle(tr("HW4 - Cade Haley - OpenGL 4 Lighting"));
 
    //  Create new OpenGL widget
    ogl = new Ex06opengl;
@@ -22,12 +22,13 @@ Ex06viewer::Ex06viewer()
    QComboBox* shader = new QComboBox();
    shader->addItem("Fixed Pipeline");
    shader->addItem("Programmable Pipeline");
+   shader->setCurrentIndex(1);
 
    //  Select projection
    QComboBox* projection = new QComboBox();
    projection->addItem("Orthogonal");
    projection->addItem("Perspective");
-   projection->setCurrentIndex(0);
+   projection->setCurrentIndex(1);
 
    //  Select object
    QComboBox* object = new QComboBox();
