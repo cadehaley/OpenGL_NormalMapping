@@ -32,7 +32,7 @@ CUgl::CUgl(QWidget* parent,bool fixed)
    //  Light position
    Lr = 2;
    zh = 0;
-   ylight = 2;
+   ylight = 1.3;
    //  Light animation
    move = true;
    //  100 fps timer connected to tick()

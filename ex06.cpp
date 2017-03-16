@@ -1,7 +1,10 @@
 //
-//  HW4:  OpenGL 4
+//  HW8:  Normal Mapping in OpenGL
 //  By Cade Haley
-//  Partner: Jose Canizares
+// Resources:
+// https://learnopengl.com/#!Advanced-Lighting/Normal-Mapping
+// http://gamedev.stackexchange.com/questions/86530/is-it-possible-to-calculate-the-tbn-matrix-in-the-fragment-shader
+
 //  Adapted from code by Willem A. (Vlakkies) Schreuder
 //  CSCI 4239/5239 Spring 2017
 //

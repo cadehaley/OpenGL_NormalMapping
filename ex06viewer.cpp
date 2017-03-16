@@ -13,7 +13,7 @@
 Ex06viewer::Ex06viewer()
 {
    //  Set window title
-   setWindowTitle(tr("HW4 - Cade Haley - OpenGL 4 Lighting"));
+   setWindowTitle(tr("HW8 - Cade Haley - Normal Mapping"));
 
    //  Create new OpenGL widget
    ogl = new Ex06opengl;
