@@ -154,9 +154,9 @@ void Ex06opengl::paintGL()
       // Enable shader
       shader[mode]->bind();
       //  Set Modelview and Projection Matrix
-      shader[mode]->setUniformValue("ProjectionMatrix",proj);
-      shader[mode]->setUniformValue("ModelViewMatrix",mv);
-      shader[mode]->setUniformValue("NormalMatrix",nrm);
+      shader[mode]->setUniformValue("inProjectionMatrix",proj);
+      shader[mode]->setUniformValue("inModelViewMatrix",mv);
+      shader[mode]->setUniformValue("inNormalMatrix",nrm);
       shader[mode]->setUniformValue("LightPos",QVector4D(lpos.x(),lpos.y(),lpos.z(),1.0));
       // Pass in light variables
       shader[mode]->setUniformValue("LightAmbient",La);
